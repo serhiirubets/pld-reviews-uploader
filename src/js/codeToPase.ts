@@ -38,7 +38,7 @@ export function getCodeToPaste(mapStudentIdToScore: IMapStudentIdToScore) {
         });
       });
       
-      Promises.all(promises).then((values) => {
+      Promise.all(promises).then((values) => {
         console.log("Finished, total students count: " + values.length);
       });
     }
