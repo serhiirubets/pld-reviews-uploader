@@ -18,8 +18,8 @@ export function getCodeToPaste(mapStudentIdToScore: IMapStudentIdToScore) {
     }
   
     function sendRequests(data, csrfToken) {
-      Object.entries(data).forEach(([id, student]) => {
-        fetch(\`https://intranet.hbtn.io\${student.uri}\`, {
+      const promises = Object.entries(data).map(([id, student]) => {
+        return fetch(\`https://intranet.hbtn.io\${student.uri}\`, {
           "headers": {
             "x-csrf-token": csrfToken,
             "accept": "application/json",
@@ -36,7 +36,11 @@ export function getCodeToPaste(mapStudentIdToScore: IMapStudentIdToScore) {
         }).then(r => r.json()).then(({ user }) => {
           console.log(\`Score for student id \${user.id} - \${user.full_name} was changed successfully\`)
         });
-      })
+      });
+      
+      Promises.all(promises).then((values) => {
+        console.log("Finished, total students count: " + values.length);
+      });
     }
   };
   

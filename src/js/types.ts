@@ -32,6 +32,7 @@ export interface IEvent {
 export interface IExcelData {
   'Email Address': string;
   "Total Sprint Review Score\n(formula)": string;
+  "Total Workshop Score\n(formula)": string;
 }
 
 export type IMapStudentIdToScore = Record<string, number>

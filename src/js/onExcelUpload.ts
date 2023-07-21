@@ -8,7 +8,7 @@ const background = document.querySelector('.dark-background');
 function getMapStudentIdToScore(data: IExcelData[]) {
   return data.reduce((prev: IMapStudentIdToScore, current: IExcelData) => {
     const [studentId] = current["Email Address"].split('@'); // Email Address
-    const score = current["Total Sprint Review Score\n(formula)"];
+    const score = current["Total Sprint Review Score\n(formula)"] || current["Total Workshop Score\n(formula)"];
 
     if (studentId && score) {
       prev[studentId] = parseInt(score);
